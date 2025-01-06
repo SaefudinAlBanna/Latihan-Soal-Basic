@@ -1,9 +1,25 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Saoal6 extends StatelessWidget {
-  const Saoal6({
+  Saoal6({
     super.key,
   });
+
+  List<KotakWarna> allitem = List.generate(
+    10,
+    (index) => KotakWarna(
+      text: "Hallo",
+      warna: Color.fromARGB(
+        255,
+        Random().nextInt(256),
+        Random().nextInt(256),
+        Random().nextInt(256),
+      ),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -21,16 +37,13 @@ class Saoal6 extends StatelessWidget {
           ),
         ],
       ),
-      body: 
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            KotakWarna(text: "Hello", warna: Colors.blue),
-            KotakWarna(text: "Hello", warna: Colors.red),
-          ],
+      body: KotakWarna(
+        text: "Hello - ",
+        warna: Color.fromARGB(
+          255,
+          Random().nextInt(256),
+          Random().nextInt(256),
+          Random().nextInt(256),
         ),
       ),
     );
@@ -49,11 +62,13 @@ class KotakWarna extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 150,
-      width: 150,
-      color: warna,
-      child: Center(child: Text(text)),
+    return ListView.builder(
+      itemCount: 10,
+      itemBuilder: (context, index) => Container(
+        height: 150,
+        width: 150,
+        color: warna,
+      ),
     );
   }
 }
